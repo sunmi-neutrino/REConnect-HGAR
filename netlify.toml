@@ -4,8 +4,8 @@
   publish = "dist"
 
 [[redirects]]
-  from   = "/v3/*"
-  to     = "/v3/index.html"
+  from   = "/v2/*"
+  to     = "/v2/index.html"
   status = 200
 
 [[redirects]]
