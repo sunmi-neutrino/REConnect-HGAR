@@ -79,7 +79,7 @@ export function HeroSection() {
         {/* Left: Text content — on mobile renders second (below image) */}
         <motion.div
           style={{ y: textY, opacity }}
-          className="flex-1 text-center lg:text-left order-2 lg:order-1"
+          className="flex-1 text-center lg:text-left order-1 lg:order-1"
         >
           {/* HGAR + REConnect lockup */}
           <motion.div
@@ -101,7 +101,7 @@ export function HeroSection() {
             style={{
               fontFamily: "'Poppins', sans-serif",
               fontWeight: 700,
-              fontSize: "clamp(1.75rem, 4.5vw, 3.75rem)",
+              fontSize: "clamp(2.4rem, 4.5vw, 3.75rem)",
               lineHeight: 1.15,
             }}
           >
@@ -173,7 +173,7 @@ export function HeroSection() {
           initial={{ opacity: 0, x: 40 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.5 }}
-          className="flex-1 w-full flex justify-center lg:justify-end relative order-1 lg:order-2"
+          className="flex-1 w-full flex justify-center lg:justify-end relative order-2 lg:order-2"
         >
           <div className="relative w-full max-w-[95vw] sm:max-w-[90vw] lg:max-w-none">
             {/* Glow */}
