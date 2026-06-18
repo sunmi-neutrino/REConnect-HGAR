@@ -13,7 +13,7 @@ export function HeroSection() {
   return (
     <section
       ref={ref}
-      className="relative flex flex-col items-center justify-start overflow-hidden"
+      className="relative flex flex-col items-center justify-start overflow-hidden -mt-[100px] pt-[100px] sm:mt-0 sm:pt-0 max-h-[860px] sm:max-h-none"
       style={{ background: "#0B1F3A" }}
     >
       {/* Animated gradient layers — cycles between #0B1F3A, #1B2166, #8D5D8E */}
@@ -57,18 +57,18 @@ export function HeroSection() {
 
       <motion.div
         style={{ y, opacity }}
-        className="relative z-10 w-full max-w-5xl mx-auto px-6 pt-[130px] flex flex-col items-center text-center"
+        className="relative z-10 w-full max-w-5xl mx-auto px-6 pt-[113px] sm:pt-[130px] flex flex-col items-center text-center"
       >
         {/* ── Partnership logos (above headline) ── */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="flex items-center gap-5 mb-10"
+          className="flex items-center gap-5 mb-6 sm:mb-10"
         >
-          <HGARLogo style={{ height: 32, width: "auto", opacity: 0.85 }} />
+          <HGARLogo className="h-6 sm:h-8" style={{ width: "auto", opacity: 0.85 }} />
           <span style={{ color: "rgba(255,255,255,0.4)", fontSize: 20, fontFamily: "Poppins, sans-serif", fontWeight: 300 }}>+</span>
-          <REConnectLogo style={{ height: 20, width: "auto", opacity: 0.85 }} />
+          <REConnectLogo className="h-4 sm:h-5" style={{ width: "auto", opacity: 0.85 }} />
         </motion.div>
 
         {/* ── Headline ── */}
@@ -100,7 +100,7 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="mb-10 w-full max-w-2xl"
+          className="mb-6 sm:mb-10 w-full max-w-2xl"
           style={{
             fontFamily: "Poppins, sans-serif",
             fontSize: "clamp(15px, 1.8vw, 17px)",
@@ -116,7 +116,7 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.28 }}
-          className="flex flex-col sm:flex-row items-center gap-3 justify-center mb-16 w-full"
+          className="flex flex-col sm:flex-row items-center gap-3 justify-center mb-8 sm:mb-16 w-full"
         >
           <motion.button
             whileHover={{ scale: 1.04 }}
