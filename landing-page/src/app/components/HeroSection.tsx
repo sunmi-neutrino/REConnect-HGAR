@@ -75,7 +75,7 @@ export function HeroSection() {
       </div>
 
       {/* Hero content */}
-      <div className="relative z-10 max-w-6xl mx-auto px-6 pt-24 pb-16 flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+      <div className="relative z-10 max-w-6xl mx-auto px-6 pt-[126px] lg:pt-24 pb-16 flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
         {/* Left: Text content — on mobile renders second (below image) */}
         <motion.div
           style={{ y: textY, opacity }}
