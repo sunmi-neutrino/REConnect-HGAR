@@ -130,7 +130,7 @@ export function CanvaSection() {
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full text-white text-sm font-semibold w-full sm:w-auto"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-white font-semibold border border-transparent w-full sm:w-auto"
                 style={{
                   fontFamily: "'Poppins', sans-serif",
                   fontWeight: 600,

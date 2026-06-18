@@ -21,9 +21,10 @@ export function NavBar() {
   useEffect(() => {
     const handler = () => {
       const y = window.scrollY;
-      setScrolled(y > 40);
+      const goingDown = y > lastY.current;
+      setScrolled(y > 80);
       if (!open) {
-        setHidden(y > lastY.current && y > 80);
+        setHidden(goingDown && y > 80);
       }
       lastY.current = y;
     };
@@ -45,16 +46,16 @@ export function NavBar() {
         transition={{ duration: 0.3, ease: "easeInOut" }}
         className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
         style={{
-          background: open ? "transparent" : scrolled ? "rgba(255,255,255,0.97)" : "rgba(9, 23, 45, 0.5)",
+          background: open ? "transparent" : (scrolled && !hidden) ? "rgba(255,255,255,0.97)" : "rgba(9, 23, 45, 0.5)",
           backdropFilter: open ? "none" : "blur(16px)",
-          borderBottom: (!open && scrolled) ? "1px solid rgba(0,0,0,0.08)" : "1px solid transparent",
-          boxShadow: (!open && scrolled) ? "0 4px 24px rgba(0,0,0,0.08)" : "none",
+          borderBottom: (!open && scrolled && !hidden) ? "1px solid rgba(0,0,0,0.08)" : "1px solid transparent",
+          boxShadow: (!open && scrolled && !hidden) ? "0 4px 24px rgba(0,0,0,0.08)" : "none",
         }}
       >
         <div className="w-full px-6 flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center">
-            <img src={scrolled && !open ? reconnectColorLogo : reconnectWhiteLogo} alt="REConnect" className="h-5 w-auto" />
+            <img src={(scrolled && !hidden && !open) ? reconnectColorLogo : reconnectWhiteLogo} alt="REConnect" className="h-5 w-auto" />
           </div>
 
           {/* Right: Login CTA (desktop only, hidden when menu open) + Hamburger */}
@@ -75,7 +76,7 @@ export function NavBar() {
               </a>
             )}
             <button
-              className={`p-2 transition-colors relative z-60 ${scrolled && !open ? "text-[#09172D]/70 hover:text-[#09172D]" : "text-white/80 hover:text-white"}`}
+              className={`p-2 transition-colors relative z-60 ${(scrolled && !hidden && !open) ? "text-[#09172D]/70 hover:text-[#09172D]" : "text-white/80 hover:text-white"}`}
               onClick={() => setOpen((o) => !o)}
               aria-label="Toggle menu"
             >

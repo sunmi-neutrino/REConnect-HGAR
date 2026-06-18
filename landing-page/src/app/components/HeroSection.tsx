@@ -136,7 +136,7 @@ export function HeroSection() {
           >
             <a
               href="#login"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-white font-semibold transition-all duration-300 hover:scale-105 hover:shadow-2xl w-full sm:w-auto"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-white font-semibold border border-transparent transition-all duration-300 hover:scale-105 hover:shadow-2xl w-full sm:w-auto"
               style={{
                 fontFamily: "'Poppins', sans-serif",
                 fontWeight: 600,

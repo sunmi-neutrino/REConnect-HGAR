@@ -144,7 +144,7 @@ export function PropertySection() {
               transition={{ delay: 0.5 }}
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.98 }}
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-white text-sm font-semibold"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-white font-semibold border border-transparent w-full sm:w-auto"
               style={{
                 fontFamily: "'Poppins', sans-serif",
                 fontWeight: 600,
