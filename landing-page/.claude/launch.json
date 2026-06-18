@@ -1,0 +1,23 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "landing-page",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["vite", "--port", "5173"],
+      "port": 5173
+    },
+    {
+      "name": "landing-page-v2",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", "v2", "-p", "5174", "--no-clipboard"],
+      "port": 5174
+    },
+    {
+      "name": "landing-page-v3",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["vite", "v3", "--port", "5175"],
+      "port": 5175
+    }
+  ]
+}

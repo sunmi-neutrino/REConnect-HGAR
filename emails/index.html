@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>REConnect Email Templates</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Poppins', Arial, sans-serif; background: #F0F2F5; padding: 40px 20px; }
+    .header { text-align: center; margin-bottom: 40px; }
+    .logo { display: inline-flex; align-items: center; gap: 5px; margin-bottom: 12px; }
+    .logo-re { background: #6B52B5; color: #fff; font-size: 18px; font-weight: 800; padding: 4px 10px; border-radius: 6px; }
+    .logo-text { font-size: 22px; font-weight: 800; color: #12122A; letter-spacing: -0.5px; }
+    h1 { font-size: 26px; font-weight: 800; color: #12122A; margin-bottom: 6px; }
+    .subtitle { color: #888; font-size: 14px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; max-width: 960px; margin: 0 auto; }
+    .card { background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 16px rgba(0,0,0,0.08); transition: transform 0.2s, box-shadow 0.2s; }
+    .card:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(0,0,0,0.14); }
+    .card-header { padding: 20px 24px 16px; background: #12122A; }
+    .card-badge { font-size: 10px; font-weight: 600; color: #F5C430; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 6px; }
+    .card-num { font-size: 32px; font-weight: 800; color: rgba(255,255,255,0.1); position: absolute; right: 20px; top: 16px; }
+    .card-title { font-size: 15px; font-weight: 700; color: #fff; line-height: 1.4; }
+    .card-body { padding: 16px 24px 20px; position: relative; }
+    .card-desc { font-size: 13px; color: #666; line-height: 1.6; margin-bottom: 16px; }
+    .card-link { display: inline-block; background: linear-gradient(135deg, #6B52B5, #0CBBC8); color: #fff; font-size: 13px; font-weight: 700; padding: 9px 20px; border-radius: 50px; text-decoration: none; }
+    .card-link:hover { opacity: 0.9; }
+    .tag { display: inline-block; font-size: 10px; font-weight: 600; padding: 3px 8px; border-radius: 20px; margin-bottom: 10px; }
+    .tag-launch { background: #EDE9FE; color: #6B52B5; }
+    .tag-ops { background: #E0F7FA; color: #0CBBC8; }
+    .tag-transact { background: #FEF9E7; color: #E8A800; }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div class="logo">
+      <span class="logo-re">RE</span>
+      <span class="logo-text">Connect</span>
+    </div>
+    <h1>Email Template System</h1>
+    <p class="subtitle">6 emails for REConnect launch and operations — click any card to preview</p>
+  </div>
+
+  <div class="grid">
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-badge">01 · Launch</div>
+        <div class="card-title">Introducing REConnect</div>
+      </div>
+      <div class="card-body">
+        <span class="tag tag-launch">Launch Email</span>
+        <p class="card-desc">Introduces REConnect to agents — what it is, all 6 features, and a CTA to explore the platform.</p>
+        <a href="01-introduction.html" class="card-link">Preview →</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-badge">02 · Launch</div>
+        <div class="card-title">How to Sign In</div>
+      </div>
+      <div class="card-body">
+        <span class="tag tag-launch">Launch Email</span>
+        <p class="card-desc">Onboards agents with login credentials, what's included, and social sign-in options (Google, Facebook, X).</p>
+        <a href="02-sign-in.html" class="card-link">Preview →</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-badge">03 · Operations</div>
+        <div class="card-title">Your FREE SLW is Ready</div>
+      </div>
+      <div class="card-body">
+        <span class="tag tag-ops">Operational Email</span>
+        <p class="card-desc">Notifies agent their complimentary Single Listing Website is live, with property details and feature highlights.</p>
+        <a href="03-free-slw-ready.html" class="card-link">Preview →</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-badge">04 · Operations</div>
+        <div class="card-title">Your SLW is Ready (Purchased)</div>
+      </div>
+      <div class="card-body">
+        <span class="tag tag-ops">Operational Email</span>
+        <p class="card-desc">Notifies agent their purchased premium Single Listing Website is live and ready to share.</p>
+        <a href="04-purchased-slw-ready.html" class="card-link">Preview →</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-badge">05 · Transactional</div>
+        <div class="card-title">SLW Purchase Receipt</div>
+      </div>
+      <div class="card-body">
+        <span class="tag tag-transact">Transactional Email</span>
+        <p class="card-desc">Order confirmation receipt with order number, date, amount charged, and what's included in the package.</p>
+        <a href="05-purchase-receipt.html" class="card-link">Preview →</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-badge">06 · Operations</div>
+        <div class="card-title">SLW Update Notification</div>
+      </div>
+      <div class="card-body">
+        <span class="tag tag-ops">Operational Email</span>
+        <p class="card-desc">Alerts agent when their listing website is updated with new content: 3D Tour, Video Tour, or new Photos.</p>
+        <a href="06-slw-update.html" class="card-link">Preview →</a>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
