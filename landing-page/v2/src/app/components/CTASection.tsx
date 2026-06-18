@@ -83,8 +83,7 @@ export function CTASection() {
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
           transition={{ delay: 0.3 }}
-          className="inline-flex items-center gap-3 px-6 py-4 rounded-2xl sm:whitespace-nowrap text-left"
-          style={{ background: "rgba(255,255,255,0.07)", border: "0.833px solid rgba(255,255,255,0.12)" }}
+          className="inline-flex items-center gap-3 sm:whitespace-nowrap text-left"
         >
           <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
             <circle cx="9" cy="9" r="7.5" stroke="#FFC685" strokeWidth="1.5"/>

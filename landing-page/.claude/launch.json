@@ -14,6 +14,12 @@
       "port": 5174
     },
     {
+      "name": "landing-page-v2-react",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["vite", "v2", "--port", "5176"],
+      "port": 5176
+    },
+    {
       "name": "landing-page-v3",
       "runtimeExecutable": "npx",
       "runtimeArgs": ["vite", "v3", "--port", "5175"],
