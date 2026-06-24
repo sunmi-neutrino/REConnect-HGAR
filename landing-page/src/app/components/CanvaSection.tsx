@@ -110,7 +110,7 @@ export function CanvaSection() {
                 >
                   <p
                     className="text-[#374151] leading-relaxed"
-                    style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 400, fontSize: "0.9rem", lineHeight: 1.6 }}
+                    style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 400, fontSize: "1rem", lineHeight: 1.6 }}
                   >
                     {step}
                   </p>

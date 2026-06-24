@@ -135,7 +135,7 @@ export function ValueSection() {
                   </h3>
                   <p
                     className="text-[#6B7280]"
-                    style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 400, fontSize: "0.83rem", lineHeight: 1.65 }}
+                    style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 400, fontSize: "0.95rem", lineHeight: 1.65 }}
                   >
                     {pt.body}
                   </p>
@@ -221,7 +221,7 @@ export function ValueSection() {
             >
               <p
                 className="text-[#0A3B95] mb-4"
-                style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "0.9rem" }}
+                style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "1rem" }}
               >
                 ✓ REConnect IS
               </p>
@@ -231,7 +231,7 @@ export function ValueSection() {
                     <CheckCircle size={16} className="text-[#0A3B95] shrink-0 mt-0.5" />
                     <span
                       className="text-[#374151]"
-                      style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 400, fontSize: "0.83rem", lineHeight: 1.6 }}
+                      style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 400, fontSize: "0.95rem", lineHeight: 1.6 }}
                     >
                       {item}
                     </span>
@@ -250,7 +250,7 @@ export function ValueSection() {
             >
               <p
                 className="text-[#EE6D68] mb-4"
-                style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "0.9rem" }}
+                style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "1rem" }}
               >
                 ✗ REConnect Is NOT
               </p>
@@ -260,7 +260,7 @@ export function ValueSection() {
                     <XCircle size={16} className="text-[#EE6D68] shrink-0 mt-0.5" />
                     <span
                       className="text-[#374151]"
-                      style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 400, fontSize: "0.83rem", lineHeight: 1.6 }}
+                      style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 400, fontSize: "0.95rem", lineHeight: 1.6 }}
                     >
                       {item}
                     </span>

@@ -41,7 +41,7 @@ function Step({ step, index }: { step: typeof steps[0]; index: number }) {
           <div className="w-px flex-1 mt-2 mb-0 min-h-[24px]" style={{ background: "linear-gradient(to bottom, rgba(10,59,149,0.3), transparent)" }} />
         )}
       </div>
-      <p className="pb-5 pt-1.5" style={{ fontFamily: "Poppins, sans-serif", fontSize: 14, color: "#374151", lineHeight: 1.6 }}>
+      <p className="pb-5 pt-1.5" style={{ fontFamily: "Poppins, sans-serif", fontSize: 16, color: "#374151", lineHeight: 1.6 }}>
         {step.text}
       </p>
     </motion.div>

@@ -43,7 +43,7 @@ export function ComparisonSection() {
               borderColor: "rgba(10,59,149,0.1)",
             }}
           >
-            <p className="font-bold text-sm mb-5" style={{ fontFamily: "Poppins, sans-serif", color: "#0a3b95" }}>
+            <p className="font-bold mb-5" style={{ fontFamily: "Poppins, sans-serif", fontSize: 16, color: "#0a3b95" }}>
               ✓ REConnect IS
             </p>
             <div className="flex flex-col gap-4">
@@ -60,7 +60,7 @@ export function ComparisonSection() {
                       <path d="M13 4L6.5 11.5L3 7.5" stroke="#0a3b95" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   </div>
-                  <p style={{ fontFamily: "Poppins, sans-serif", fontSize: 13, color: "#374151", lineHeight: 1.65 }}>{item}</p>
+                  <p style={{ fontFamily: "Poppins, sans-serif", fontSize: 15, color: "#374151", lineHeight: 1.65 }}>{item}</p>
                 </motion.div>
               ))}
             </div>
@@ -77,7 +77,7 @@ export function ComparisonSection() {
               borderColor: "rgba(238,109,104,0.15)",
             }}
           >
-            <p className="font-bold text-sm mb-5" style={{ fontFamily: "Poppins, sans-serif", color: "#ee6d68" }}>
+            <p className="font-bold mb-5" style={{ fontFamily: "Poppins, sans-serif", fontSize: 16, color: "#ee6d68" }}>
               ✗ REConnect Is NOT
             </p>
             <div className="flex flex-col gap-4">
@@ -95,7 +95,7 @@ export function ComparisonSection() {
                       <path d="M10 6L6 10M6 6L10 10" stroke="#ee6d68" strokeWidth="1.33" strokeLinecap="round" />
                     </svg>
                   </div>
-                  <p style={{ fontFamily: "Poppins, sans-serif", fontSize: 13, color: "#374151", lineHeight: 1.65 }}>{item}</p>
+                  <p style={{ fontFamily: "Poppins, sans-serif", fontSize: 15, color: "#374151", lineHeight: 1.65 }}>{item}</p>
                 </motion.div>
               ))}
             </div>
