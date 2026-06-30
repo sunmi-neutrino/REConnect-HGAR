@@ -25,5 +25,13 @@
       "runtimeArgs": ["vite", "v3", "--port", "5175"],
       "port": 5175
     }
+  ],
+  "staticServers": [
+    {
+      "name": "07-hgar-member-benefit",
+      "directory": "../emails",
+      "file": "07-hgar-member-benefit.html",
+      "port": 5177
+    }
   ]
 }
