@@ -3,6 +3,6 @@
   "outputDirectory": "dist",
   "rewrites": [
     { "source": "/v2/(.*)", "destination": "/v2/index.html" },
-    { "source": "/((?!v2).*)", "destination": "/index.html" }
+    { "source": "/((?!v2|emails).*)", "destination": "/index.html" }
   ]
 }
