@@ -2,7 +2,8 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "rewrites": [
+    { "source": "/v1/(.*)", "destination": "/v1/index.html" },
     { "source": "/v2/(.*)", "destination": "/v2/index.html" },
-    { "source": "/((?!v2|emails).*)", "destination": "/index.html" }
+    { "source": "/((?!v1|v2|emails).*)", "destination": "/index.html" }
   ]
 }

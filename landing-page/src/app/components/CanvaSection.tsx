@@ -1,18 +1,9 @@
 import { useRef } from "react";
 import { motion, useInView } from "motion/react";
-import { ExternalLink } from "lucide-react";
-import imgScreenshot from "../../imports/Container/586739e321315c30f93bcd697f03e692663fefe9.png";
-
-const steps = [
-  "Go to Canva.com and log into your Canva account.",
-  "Go to the App Store in Canva.",
-  'Search "reconnect" within the search bar.',
-  "Click on the app and open with a new or existing design from your folder.",
-  'Once your design or template is open, click "Login to REConnect". Then click "Connect".',
-  "Enter your login credentials in the pop up window and click \"Sign in\".",
-  "Your listings should now appear on the left hand side in the REConnect app.",
-  "Enjoy the ease of REConnect!",
-];
+import imgScreenshot from "../../assets/canva/canva-interface.png";
+import playIcon from "../../assets/canva/play-icon.svg";
+import getStartedIcon from "../../assets/navbar/get-started-icon.svg";
+import viewSampleIcon from "../../assets/canva/view-sample-icon.svg";
 
 export function CanvaSection() {
   const ref = useRef<HTMLDivElement>(null);
@@ -65,122 +56,72 @@ export function CanvaSection() {
           </p>
         </motion.div>
 
-        {/* Split layout: steps + image */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center lg:items-start">
-          {/* Steps — on mobile rendered second (image comes first via order) */}
-          <div className="flex flex-col gap-4 order-2 lg:order-1">
-            {steps.map((step, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, x: -20 }}
-                animate={inView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.4, delay: 0.1 + i * 0.07 }}
-                className="flex gap-4 items-start group"
-              >
-                {/* Step number */}
-                <div
-                  className="flex items-center justify-center shrink-0 w-9 h-9 rounded-full text-white text-sm transition-all duration-300 group-hover:scale-110"
-                  style={{
-                    fontFamily: "'Poppins', sans-serif",
-                    fontWeight: 700,
-                    background:
-                      i === steps.length - 1
-                        ? "linear-gradient(135deg, #B14DFF, #10E0F9)"
-                        : "linear-gradient(135deg, #0A3B95, #008AD0)",
-                    boxShadow: "0 4px 12px rgba(10,59,149,0.3)",
-                  }}
-                >
-                  {i + 1}
-                </div>
-                {/* Step text */}
-                <div
-                  className="flex-1 py-2 px-4 rounded-xl transition-all duration-300"
-                  style={{
-                    background: "transparent",
-                    border: "1px solid transparent",
-                  }}
-                  onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLDivElement).style.background = "#F6F7FA";
-                    (e.currentTarget as HTMLDivElement).style.borderColor = "#E5E7EB";
-                  }}
-                  onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLDivElement).style.background = "transparent";
-                    (e.currentTarget as HTMLDivElement).style.borderColor = "transparent";
-                  }}
-                >
-                  <p
-                    className="text-[#374151] leading-relaxed"
-                    style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 400, fontSize: "1rem", lineHeight: 1.6 }}
-                  >
-                    {step}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.9 }}
-              className="mt-4"
-            >
-              <motion.a
-                href="https://www.canva.com/apps/search?q=reconnect"
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-white font-semibold border border-transparent w-full sm:w-auto"
-                style={{
-                  fontFamily: "'Poppins', sans-serif",
-                  fontWeight: 600,
-                  background: "linear-gradient(135deg, #B14DFF, #79309E)",
-                  boxShadow: "0 8px 24px rgba(177,77,255,0.35)",
-                }}
-              >
-                <ExternalLink size={16} />
-                Get REConnect Canva Plugin
-              </motion.a>
-            </motion.div>
+        {/* Product screenshot with play overlay */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, delay: 0.2 }}
+          className="relative flex justify-center mb-12"
+        >
+          <div className="relative max-w-3xl w-full aspect-video group cursor-pointer">
+            <img
+              src={imgScreenshot}
+              alt="REConnect Canva plugin interface"
+              className="absolute inset-0 rounded-2xl shadow-2xl w-full h-full object-cover"
+            />
+            <motion.img
+              src={playIcon}
+              alt=""
+              whileHover={{ scale: 1.08 }}
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-20 transition-transform"
+            />
           </div>
+        </motion.div>
 
-          {/* Screenshot image */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.3 }}
-            className="relative flex justify-center order-1 lg:order-2"
+        {/* CTA buttons */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.4 }}
+          className="flex flex-col sm:flex-row gap-4 justify-center"
+        >
+          <motion.a
+            href="https://www.canva.com/apps/search?q=reconnect"
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-white font-semibold border border-transparent w-full sm:w-auto"
+            style={{
+              fontFamily: "'Poppins', sans-serif",
+              fontWeight: 600,
+              fontSize: "1rem",
+              background: "linear-gradient(135deg, #008AD0, #0A3B95)",
+              boxShadow: "0 8px 12px rgba(10,59,149,0.3)",
+            }}
           >
-            <div className="relative max-w-sm w-full">
-              {/* Glow */}
-              <div
-                className="absolute inset-0 rounded-3xl blur-2xl opacity-30 scale-95"
-                style={{ background: "linear-gradient(135deg, #B14DFF, #10E0F9)" }}
-              />
-              <img
-                src={imgScreenshot}
-                alt="REConnect Canva plugin interface"
-                className="relative shadow-2xl w-full object-contain"
-                style={{ border: "1px solid rgba(177,77,255,0.2)" }}
-              />
-              {/* Caption overlay */}
-              <div
-                className="absolute bottom-4 left-4 right-4 px-4 py-3 rounded-xl backdrop-blur-sm"
-                style={{
-                  background: "rgba(17,34,106,0.85)",
-                  border: "1px solid rgba(255,255,255,0.1)",
-                }}
-              >
-                <p
-                  className="text-white text-xs text-center"
-                  style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 500 }}
-                >
-                  REConnect inside Canva — your listings, ready to drag & drop
-                </p>
-              </div>
-            </div>
-          </motion.div>
-        </div>
+            <img src={getStartedIcon} alt="" className="size-4" style={{ filter: "brightness(0) invert(1)" }} />
+            Get REConnect Canva App
+          </motion.a>
+          <motion.a
+            href="https://www.canva.com/apps/search?q=reconnect"
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-white font-semibold border border-transparent w-full sm:w-auto"
+            style={{
+              fontFamily: "'Poppins', sans-serif",
+              fontWeight: 600,
+              fontSize: "1rem",
+              color: "#0A3B95",
+              boxShadow: "0 8px 12px rgba(10,59,149,0.3)",
+            }}
+          >
+            <img src={viewSampleIcon} alt="" className="size-4" />
+            View Sample REConnect Templates
+          </motion.a>
+        </motion.div>
       </div>
     </section>
   );

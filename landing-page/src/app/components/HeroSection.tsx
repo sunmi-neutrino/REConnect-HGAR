@@ -1,11 +1,27 @@
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 // useScroll without a target reads window scroll — no positioned-container warning
 import { ExternalLink, ChevronDown, CheckCircle, Globe } from "lucide-react";
-import imgListingPreview from "../../imports/SLW.png";
-import imgCanvaScreen from "../../imports/Container/586739e321315c30f93bcd697f03e692663fefe9.png";
+import imgDigitalMarketing from "../../assets/hero/digital-marketing.png";
+import imgCanvaScreen from "../../assets/hero/canva-plugin.png";
+import imgListingPreview from "../../assets/hero/property-website.png";
 import reconnectWhiteLogo from "../../imports/ReConnect_logo_final-white.svg";
 import hgarLogo from "../../imports/HGAR_logo_white.svg";
+
+// Rotating hero screen carousel — 3 fixed slots (left / center-front / right), the
+// screenshot occupying each slot cycles on an interval. Center slot always sits on top.
+const heroCards = [
+  { key: "digital", img: imgDigitalMarketing, label: "Digital Marketing Package", Icon: CheckCircle },
+  { key: "canva", img: imgCanvaScreen, label: "Canva App with MLS Data Auto-Populated", Icon: CheckCircle },
+  { key: "property", img: imgListingPreview, label: "Property Websites", Icon: Globe },
+];
+
+// slot 0 = center/front, 1 = right-back, 2 = left-back
+const slotStyle = [
+  { x: 0, y: 0, rotate: 0, scale: 1, zIndex: 30, opacity: 1 },
+  { x: 115, y: 26, rotate: 8, scale: 0.88, zIndex: 20, opacity: 0.65 },
+  { x: -115, y: 26, rotate: -8, scale: 0.88, zIndex: 20, opacity: 0.65 },
+];
 
 export function HeroSection() {
   const ref = useRef<HTMLDivElement>(null);
@@ -13,6 +29,12 @@ export function HeroSection() {
   const imageY = useTransform(scrollY, [0, 600], ["0%", "25%"]);
   const textY = useTransform(scrollY, [0, 600], ["0%", "15%"]);
   const opacity = useTransform(scrollY, [0, 500], [1, 0]);
+
+  const [active, setActive] = useState(0);
+  useEffect(() => {
+    const id = setInterval(() => setActive((a) => (a + 1) % heroCards.length), 3200);
+    return () => clearInterval(id);
+  }, []);
 
   return (
     <section
@@ -26,9 +48,10 @@ export function HeroSection() {
       {/* Decorative background layer */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
 
-        {/* Soft ambient blobs — unchanged */}
+        {/* Soft ambient blobs */}
         <div className="absolute rounded-full blur-[140px] opacity-25" style={{ width: "700px", height: "700px", background: "radial-gradient(circle, #B14DFF 0%, transparent 70%)", top: "-150px", right: "-150px" }} />
         <div className="absolute rounded-full blur-[120px] opacity-15" style={{ width: "500px", height: "500px", background: "radial-gradient(circle, #10E0F9 0%, transparent 70%)", bottom: "-60px", left: "-80px" }} />
+        <div className="absolute rounded-full blur-[64px] opacity-20" style={{ width: "384px", height: "384px", background: "radial-gradient(circle, #D77FFF 0%, transparent 70%)", top: "200px", left: "96px" }} />
 
         {/* Large concentric ring arcs — top-right corner */}
         <svg className="absolute top-0 right-0 opacity-[0.07]" width="600" height="600" viewBox="0 0 600 600" fill="none">
@@ -145,11 +168,11 @@ export function HeroSection() {
               }}
             >
               <ExternalLink size={16} />
-              Log into REConnect
+              Get Started
             </a>
             <a
               href="#benefits"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-white font-semibold border border-white/20 bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-all duration-300 w-full sm:w-auto"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-white font-semibold border border-white/20 bg-white/10 backdrop-blur-sm hover:bg-white/20 hover:scale-105 transition-all duration-300 w-full sm:w-auto"
               style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 500 }}
             >
               Explore Benefits
@@ -167,76 +190,60 @@ export function HeroSection() {
           </motion.p>
         </motion.div>
 
-        {/* Right: Two stacked screenshots */}
+        {/* Right: Rotating carousel of product screens */}
         <motion.div
           style={{ y: imageY }}
           initial={{ opacity: 0, x: 40 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.5 }}
-          className="flex-1 w-full flex justify-center lg:justify-end relative order-2 lg:order-2"
+          className="flex-1 min-w-0 w-full flex justify-center lg:justify-end relative order-2 lg:order-2 -mt-[60px] sm:mt-0"
         >
-          <div className="relative w-full max-w-[95vw] sm:max-w-[90vw] lg:max-w-none">
+          <div className="relative w-full max-w-[280px] sm:max-w-[340px] lg:max-w-[440px] h-[260px] sm:h-[320px] lg:h-[400px] flex items-center justify-center">
             {/* Glow */}
             <div
               className="absolute inset-0 rounded-3xl blur-3xl opacity-30 scale-90"
               style={{ background: "linear-gradient(135deg, #B14DFF, #10E0F9)" }}
             />
 
-            {/* Listing website preview — larger, behind */}
-            <div className="relative">
-              <img
-                src={imgListingPreview}
-                alt="REConnect listing website preview"
-                className="relative shadow-2xl w-full object-cover"
-                style={{ border: "1px solid rgba(255,255,255,0.15)" }}
-              />
-
-              {/* Canva screenshot — static, overlapping bottom-right corner */}
-              <div
-                className="absolute -bottom-6 -right-4 w-2/5 shadow-2xl overflow-hidden"
-                style={{ border: "2px solid rgba(255,255,255,0.2)" }}
-              >
-                <img
-                  src={imgCanvaScreen}
-                  alt="REConnect Canva plugin"
-                  className="w-full object-cover"
-                />
-              </div>
-            </div>
-
-            {/* Floating badge — MLS (same size as Property badge, shifted left of Canva screenshot) */}
-            <motion.div
-              animate={{ y: [0, -7, 0] }}
-              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute flex items-center gap-2 px-4 py-2.5 rounded-full shadow-xl backdrop-blur-sm whitespace-nowrap"
-              style={{
-                background: "rgba(9, 23, 45, 0.92)",
-                border: "1px solid rgba(255,255,255,0.12)",
-                bottom: "-1.5rem",
-                right: "calc(40% - 60px)",
-              }}
-            >
-              <CheckCircle size={13} className="text-white/80 shrink-0" />
-              <p className="text-white text-xs font-semibold" style={{ fontFamily: "'Poppins', sans-serif" }}>
-                MLS Data Auto-Populated
-              </p>
-            </motion.div>
-
-            {/* Floating badge — Property website */}
-            <motion.div
-              animate={{ y: [0, 6, 0] }}
-              transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-              className="absolute -top-4 -left-4 flex items-center gap-2 px-4 py-2.5 rounded-full shadow-xl backdrop-blur-sm"
-              style={{
-                background: "rgba(9, 23, 45, 0.92)",
-                border: "1px solid rgba(255,255,255,0.12)",
-              }}
-            >
-              <Globe size={13} className="text-white/80 shrink-0" />
-              <p className="text-white text-xs font-semibold" style={{ fontFamily: "'Poppins', sans-serif" }}>
-                Free Property Website
-              </p>
-            </motion.div>
+            {heroCards.map(({ key, img, label, Icon }, i) => {
+              const slot = (i - active + heroCards.length) % heroCards.length;
+              const style = slotStyle[slot];
+              return (
+                <motion.div
+                  key={key}
+                  animate={{ x: style.x, y: style.y, rotate: style.rotate, scale: style.scale, opacity: style.opacity }}
+                  transition={{ duration: 0.9, ease: "easeInOut" }}
+                  style={{ zIndex: style.zIndex }}
+                  className="absolute w-[85%]"
+                >
+                  <div className="relative">
+                    <img
+                      src={img}
+                      alt={label}
+                      className="relative rounded-lg shadow-2xl w-full object-cover"
+                      style={{ border: "1px solid rgba(255,255,255,0.15)" }}
+                    />
+                    {slot === 0 && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 6 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.4, delay: 0.3 }}
+                        className="absolute -bottom-5 left-1/2 -translate-x-1/2 flex items-center gap-2 px-4 py-2.5 rounded-full shadow-xl backdrop-blur-sm whitespace-nowrap"
+                        style={{
+                          background: "rgba(9, 23, 45, 0.92)",
+                          border: "1px solid rgba(255,255,255,0.12)",
+                        }}
+                      >
+                        <Icon size={13} className="text-white/80 shrink-0" />
+                        <p className="text-white text-xs font-semibold" style={{ fontFamily: "'Poppins', sans-serif" }}>
+                          {label}
+                        </p>
+                      </motion.div>
+                    )}
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
         </motion.div>
       </div>

@@ -1,5 +1,5 @@
-import { ExternalLink } from "lucide-react";
-import reconnectWhiteLogo from "../../imports/ReConnect_logo_final-white.svg";
+import hgarLogo from "../../assets/navbar/hgar-logo.svg";
+import reconnectWordmark from "../../assets/navbar/reconnect-wordmark.svg";
 
 const footerLinks = [
   { label: "Benefits", href: "#benefits" },
@@ -19,8 +19,10 @@ export function FooterSection() {
         <div className="flex flex-col md:flex-row items-center md:items-start justify-between gap-8">
           {/* Brand */}
           <div className="flex flex-col items-center md:items-start gap-3">
-            <div className="flex items-center">
-              <img src={reconnectWhiteLogo} alt="REConnect" className="h-5 w-auto opacity-50" />
+            <div className="flex items-center gap-3">
+              <img src={hgarLogo} alt="HGAR" className="h-[22px] w-auto" />
+              <span className="text-[16px] leading-none" style={{ fontFamily: "'Poppins', sans-serif", color: "rgba(255,255,255,0.25)" }}>+</span>
+              <img src={reconnectWordmark} alt="REConnect" className="h-[18px] w-auto opacity-50" />
             </div>
             <p
               className="text-white/30 text-xs text-center md:text-left"
@@ -60,34 +62,15 @@ export function FooterSection() {
         </div>
 
         <div
-          className="mt-10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4"
+          className="mt-10 pt-6 flex items-center justify-center"
           style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}
         >
           <p
             className="text-white/25 text-xs"
             style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 400 }}
           >
-            © {new Date().getFullYear()} REConnect by Neutrino. All rights reserved.
+            © 2026 REConnect by Neutrino. All rights reserved.
           </p>
-          <div className="flex items-center gap-4">
-            <a
-              href="mailto:haydn@neutrinoinc.com"
-              className="text-white/30 hover:text-white/60 text-xs transition-colors"
-              style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 400 }}
-            >
-              haydn@neutrinoinc.com
-            </a>
-            <a
-              href="https://reconnectapp.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 text-[#10E0F9]/50 hover:text-[#10E0F9] text-xs transition-colors"
-              style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 500 }}
-            >
-              <ExternalLink size={11} />
-              reconnectapp.com
-            </a>
-          </div>
         </div>
       </div>
     </footer>

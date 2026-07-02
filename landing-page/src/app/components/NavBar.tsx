@@ -1,8 +1,9 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Menu, X, ExternalLink } from "lucide-react";
-import reconnectWhiteLogo from "../../imports/ReConnect_logo_final-white.svg";
-import reconnectColorLogo from "../../imports/ReConnect_logo_final.svg";
+import { Menu, X } from "lucide-react";
+import hgarLogo from "../../assets/navbar/hgar-logo.svg";
+import reconnectWordmark from "../../assets/navbar/reconnect-wordmark.svg";
+import getStartedIcon from "../../assets/navbar/get-started-icon.svg";
 
 const navLinks = [
   { label: "Benefits", href: "#benefits" },
@@ -46,19 +47,26 @@ export function NavBar() {
         transition={{ duration: 0.3, ease: "easeInOut" }}
         className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
         style={{
-          background: open ? "transparent" : (scrolled && !hidden) ? "rgba(255,255,255,0.97)" : "rgba(9, 23, 45, 0.5)",
+          background: open ? "transparent" : (scrolled && !hidden) ? "rgba(9, 23, 45, 0.85)" : "rgba(9, 23, 45, 0.5)",
           backdropFilter: open ? "none" : "blur(16px)",
-          borderBottom: (!open && scrolled && !hidden) ? "1px solid rgba(0,0,0,0.08)" : "1px solid transparent",
-          boxShadow: (!open && scrolled && !hidden) ? "0 4px 24px rgba(0,0,0,0.08)" : "none",
+          borderBottom: (!open && scrolled && !hidden) ? "1px solid rgba(255,255,255,0.08)" : "1px solid transparent",
+          boxShadow: (!open && scrolled && !hidden) ? "0 4px 24px rgba(0,0,0,0.24)" : "none",
         }}
       >
         <div className="w-full px-6 flex items-center justify-between h-16">
-          {/* Logo */}
-          <div className="flex items-center">
-            <img src={(scrolled && !hidden && !open) ? reconnectColorLogo : reconnectWhiteLogo} alt="REConnect" className="h-5 w-auto" />
+          {/* Logo lockup: HGAR + REConnect */}
+          <div className="flex items-center gap-3">
+            <img src={hgarLogo} alt="HGAR" className="h-[22px] w-auto" />
+            <span
+              className="text-[16px] leading-none"
+              style={{ fontFamily: "'Poppins', sans-serif", color: "rgba(255,255,255,0.25)" }}
+            >
+              +
+            </span>
+            <img src={reconnectWordmark} alt="REConnect" className="h-[18px] w-auto" />
           </div>
 
-          {/* Right: Login CTA (desktop only, hidden when menu open) + Hamburger */}
+          {/* Right: Get Started CTA (desktop only, hidden when menu open) + Hamburger */}
           <div className="flex items-center gap-3">
             {!open && (
               <a
@@ -67,16 +75,16 @@ export function NavBar() {
                 style={{
                   fontFamily: "'Poppins', sans-serif",
                   fontWeight: 600,
-                  background: "linear-gradient(135deg, #008AD0, #0A3B95)",
-                  boxShadow: "0 4px 16px rgba(10,59,149,0.4)",
+                  background: "linear-gradient(165deg, #008AD0, #0A3B95)",
+                  boxShadow: "0 4px 8px rgba(10,59,149,0.4)",
                 }}
               >
-                <ExternalLink size={13} />
-                Login
+                <img src={getStartedIcon} alt="" className="size-[13px]" />
+                Get Started
               </a>
             )}
             <button
-              className={`p-2 transition-colors relative z-60 ${(scrolled && !hidden && !open) ? "text-[#09172D]/70 hover:text-[#09172D]" : "text-white/80 hover:text-white"}`}
+              className="p-2 transition-colors relative z-60 text-white/80 hover:text-white"
               onClick={() => setOpen((o) => !o)}
               aria-label="Toggle menu"
             >
@@ -120,7 +128,7 @@ export function NavBar() {
                   </motion.div>
                 ))}
 
-                {/* Login button — immediately after Contact */}
+                {/* Get Started button — immediately after Contact */}
                 <motion.div
                   initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -140,8 +148,8 @@ export function NavBar() {
                       boxShadow: "0 8px 24px rgba(10,59,149,0.4)",
                     }}
                   >
-                    <ExternalLink size={16} />
-                    Login to REConnect
+                    <img src={getStartedIcon} alt="" className="size-4" />
+                    Get Started
                   </a>
                 </motion.div>
               </nav>

@@ -2,9 +2,9 @@ import { NavBar } from "./components/NavBar";
 import { HeroSection } from "./components/HeroSection";
 import { BenefitsSection } from "./components/BenefitsSection";
 import { LoginSection } from "./components/LoginSection";
-import { ValueSection } from "./components/ValueSection";
 import { CanvaSection } from "./components/CanvaSection";
 import { PropertySection } from "./components/PropertySection";
+import { PropertyMarketingSection } from "./components/PropertyMarketingSection";
 import { ComingSoonSection } from "./components/ComingSoonSection";
 import { ContactSection } from "./components/ContactSection";
 import { FooterSection } from "./components/FooterSection";
@@ -17,9 +17,10 @@ export default function App() {
       <HeroSection />
       <BenefitsSection />
       <LoginSection />
-      <ValueSection />
       <CanvaSection />
       <PropertySection />
+      <div style={{ height: 1, background: "#E5E7EB" }} />
+      <PropertyMarketingSection />
       <ComingSoonSection />
       <ContactSection />
       <FooterSection />

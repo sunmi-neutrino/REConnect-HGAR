@@ -1,31 +1,53 @@
 import { useRef } from "react";
-import { motion, useInView } from "motion/react";
+import { motion, useInView, useScroll, useTransform } from "motion/react";
 import { ExternalLink, Mail } from "lucide-react";
 
 export function LoginSection() {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
 
+  // Background parallax: the gradient + blobs drift vertically and the
+  // background "closes up" (zooms in) as you scroll down through the section,
+  // then reveals again (zooms back out) as you scroll back up — driven
+  // directly by scroll position so it reverses smoothly either direction.
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+  const bgY = useTransform(scrollYProgress, [0, 1], ["-12%", "12%"]);
+  const bgScale = useTransform(scrollYProgress, [0, 1], [1, 1.35]);
+  const blob1Y = useTransform(scrollYProgress, [0, 1], ["-20%", "20%"]);
+  const blob1Scale = useTransform(scrollYProgress, [0, 1], [1, 1.2]);
+  const blob2Y = useTransform(scrollYProgress, [0, 1], ["20%", "-20%"]);
+  const blob2Scale = useTransform(scrollYProgress, [0, 1], [1, 1.2]);
+
   return (
-    <section id="login" className="py-20 relative overflow-hidden">
+    <section id="login" ref={sectionRef} className="min-h-screen flex items-center relative overflow-hidden">
       {/* Background */}
-      <div
-        className="absolute inset-0"
+      <motion.div
+        className="absolute -inset-y-24 inset-x-0"
         style={{
+          y: bgY,
+          scale: bgScale,
           background: "linear-gradient(135deg, #09172D 0%, #1B2166 50%, #79309E 100%)",
         }}
       />
-      {/* Decorative blob */}
-      <div
+      {/* Decorative blobs — drift + zoom at their own rates for depth */}
+      <motion.div
+        style={{ y: blob1Y, scale: blob1Scale }}
         className="absolute right-0 top-0 w-96 h-96 rounded-full opacity-20 blur-3xl"
-        style={{ background: "radial-gradient(circle, #10E0F9, transparent)" }}
-      />
-      <div
+      >
+        <div className="w-full h-full rounded-full" style={{ background: "radial-gradient(circle, #10E0F9, transparent)" }} />
+      </motion.div>
+      <motion.div
+        style={{ y: blob2Y, scale: blob2Scale }}
         className="absolute left-0 bottom-0 w-80 h-80 rounded-full opacity-15 blur-3xl"
-        style={{ background: "radial-gradient(circle, #B14DFF, transparent)" }}
-      />
+      >
+        <div className="w-full h-full rounded-full" style={{ background: "radial-gradient(circle, #B14DFF, transparent)" }} />
+      </motion.div>
 
-      <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
+      <div className="relative z-10 max-w-4xl w-full mx-auto px-6 text-center">
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 30 }}
@@ -82,19 +104,12 @@ export function LoginSection() {
               }}
             >
               <ExternalLink size={18} />
-              Log into REConnect
+              Get Started
             </motion.a>
           </div>
 
           {/* Trust note */}
-          <div
-            className="inline-flex items-start gap-3 px-6 py-4 rounded-2xl text-left"
-            style={{
-              background: "rgba(255,255,255,0.07)",
-              border: "1px solid rgba(255,255,255,0.12)",
-              backdropFilter: "blur(10px)",
-            }}
-          >
+          <div className="inline-flex items-start gap-3 text-left">
             <Mail size={18} className="text-[#FFC685] shrink-0 mt-0.5" />
             <p
               className="text-white/70 text-sm leading-relaxed"

@@ -1,9 +1,14 @@
 import { useRef } from "react";
 import { motion, useInView } from "motion/react";
 import { Star, Network, BookOpen } from "lucide-react";
+import imgPortfolios from "../../assets/coming-soon/portfolios.png";
+import imgSpotlights from "../../assets/coming-soon/spotlights.png";
+import imgNetwork from "../../assets/coming-soon/network.png";
 
 const upcoming = [
   {
+    key: "portfolios",
+    img: imgPortfolios,
     icon: BookOpen,
     title: "Portfolios",
     description: "Showcase your full listing portfolio in one beautifully branded, shareable page.",
@@ -11,6 +16,8 @@ const upcoming = [
     delay: 0.1,
   },
   {
+    key: "spotlights",
+    img: imgSpotlights,
     icon: Star,
     title: "Spotlights",
     description: "Highlight featured listings and agents with dynamic spotlight pages that drive engagement.",
@@ -18,6 +25,8 @@ const upcoming = [
     delay: 0.2,
   },
   {
+    key: "network",
+    img: imgNetwork,
     icon: Network,
     title: "Network",
     description: "Connect with other HGAR agents, share referrals, and grow your professional network inside REConnect.",
@@ -31,7 +40,7 @@ export function ComingSoonSection() {
   const inView = useInView(ref, { once: true, margin: "-60px" });
 
   return (
-    <section id="coming-soon" className="py-24 relative overflow-hidden">
+    <section id="coming-soon" className="min-h-screen flex items-center py-24 relative overflow-hidden">
       {/* Dark gradient background */}
       <div
         className="absolute inset-0"
@@ -61,7 +70,7 @@ export function ComingSoonSection() {
         />
       </div>
 
-      <div className="relative z-10 max-w-6xl mx-auto px-6">
+      <div className="relative z-10 max-w-6xl w-full mx-auto px-6">
         {/* Header */}
         <motion.div
           ref={ref}
@@ -74,7 +83,7 @@ export function ComingSoonSection() {
             className="inline-block px-4 py-1.5 rounded-full text-xs tracking-widest uppercase mb-4 border border-white/20 bg-white/10 text-white/70 backdrop-blur-sm"
             style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 600 }}
           >
-            What's Coming Next
+            Coming Soon
           </span>
           <h2
             className="text-white mb-4"
@@ -101,55 +110,71 @@ export function ComingSoonSection() {
         </motion.div>
 
         {/* Cards grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5" style={{ perspective: "1200px" }}>
           {upcoming.map((item) => (
             <motion.div
-              key={item.title}
+              key={item.key}
               initial={{ opacity: 0, y: 25 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: item.delay }}
-              whileHover={{ y: -5 }}
-              className="relative rounded-2xl p-6 flex flex-col gap-4 overflow-hidden group cursor-default"
-              style={{
-                background: "rgba(255,255,255,0.05)",
-                border: "1px solid rgba(255,255,255,0.1)",
-                backdropFilter: "blur(10px)",
-              }}
+              className="group relative h-[300px] cursor-default"
+              style={{ perspective: "1200px" }}
             >
-              {/* Hover glow */}
               <div
-                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"
-                style={{
-                  background: "linear-gradient(135deg, rgba(177,77,255,0.06), rgba(16,224,249,0.06))",
-                }}
-              />
-              {/* Coming soon tag */}
-              <div className="flex items-center justify-between">
+                className="relative w-full h-full transition-transform duration-700 group-hover:[transform:rotateY(180deg)]"
+                style={{ transformStyle: "preserve-3d" }}
+              >
+                {/* Front — image preview */}
                 <div
-                  className="flex items-center justify-center w-11 h-11 rounded-full relative"
-                  style={{ background: item.gradient }}
+                  className="absolute inset-0 rounded-2xl p-4 overflow-hidden"
+                  style={{
+                    background: "rgba(255,255,255,0.05)",
+                    border: "1px solid rgba(255,255,255,0.1)",
+                    backdropFilter: "blur(10px)",
+                    backfaceVisibility: "hidden",
+                  }}
                 >
-                  <item.icon size={20} color="white" />
+                  <div className="relative rounded-xl overflow-hidden h-full">
+                    <img
+                      src={item.img}
+                      alt={`${item.title} preview`}
+                      className="absolute inset-0 w-full h-full object-cover object-top"
+                    />
+                    <span
+                      className="absolute top-3 right-3 text-xs px-3 py-1 rounded-full border border-white/15 text-white/70 backdrop-blur-sm"
+                      style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 500, background: "rgba(9,23,45,0.5)" }}
+                    >
+                      Coming Soon
+                    </span>
+                  </div>
                 </div>
-                <span
-                  className="text-xs px-3 py-1 rounded-full border border-white/15 text-white/50"
-                  style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 500 }}
+
+                {/* Back — title + description */}
+                <div
+                  className="absolute inset-0 rounded-2xl p-6 flex flex-col gap-4 items-start justify-center"
+                  style={{
+                    background: item.gradient,
+                    backfaceVisibility: "hidden",
+                    transform: "rotateY(180deg)",
+                  }}
                 >
-                  Coming Soon
-                </span>
+                  <div className="flex items-center justify-center w-11 h-11 rounded-full bg-white/15">
+                    <item.icon size={20} color="white" />
+                  </div>
+                  <h3
+                    className="text-white"
+                    style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "1.1rem" }}
+                  >
+                    {item.title}
+                  </h3>
+                  <p
+                    className="text-white/85 leading-relaxed"
+                    style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 400, fontSize: "0.875rem", lineHeight: 1.6 }}
+                  >
+                    {item.description}
+                  </p>
+                </div>
               </div>
-              <h3
-                className="text-white"
-                style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "1rem" }}
-              >
-                {item.title}
-              </h3>
-              <p
-                className="text-white/50 leading-relaxed"
-                style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 400, fontSize: "0.83rem", lineHeight: 1.65 }}
-              >
-                {item.description}
-              </p>
             </motion.div>
           ))}
         </div>

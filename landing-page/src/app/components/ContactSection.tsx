@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { motion, useInView } from "motion/react";
-import { Mail, Send, CheckCircle } from "lucide-react";
+import { Mail, Send, CheckCircle, ChevronDown } from "lucide-react";
 
 export function ContactSection() {
   const ref = useRef<HTMLDivElement>(null);
@@ -83,40 +83,11 @@ export function ContactSection() {
                     REConnect Support
                   </p>
                   <a
-                    href="mailto:haydn@neutrinoinc.com"
+                    href="mailto:support@reconnectapp.com"
                     className="text-[#0A3B95] hover:underline text-sm"
                     style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 400 }}
                   >
-                    haydn@neutrinoinc.com
-                  </a>
-                </div>
-              </div>
-
-              <div
-                className="flex items-start gap-4 p-4 rounded-2xl"
-                style={{ border: "none" }}
-              >
-                <div
-                  className="flex items-center justify-center w-10 h-10 rounded-full shrink-0"
-                  style={{ background: "linear-gradient(135deg, #B14DFF, #79309E)" }}
-                >
-                  <span className="text-white font-bold text-xs" style={{ fontFamily: "'Poppins', sans-serif" }}>RC</span>
-                </div>
-                <div>
-                  <p
-                    className="text-[#1B2E41] mb-0.5"
-                    style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "0.875rem" }}
-                  >
-                    REConnect Website
-                  </p>
-                  <a
-                    href="https://reconnectapp.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[#0A3B95] hover:underline text-sm"
-                    style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 400 }}
-                  >
-                    reconnectapp.com
+                    support@reconnectapp.com
                   </a>
                 </div>
               </div>
@@ -155,7 +126,7 @@ export function ContactSection() {
               <form
                 onSubmit={handleSubmit}
                 className="flex flex-col gap-4 p-8 rounded-3xl"
-                style={{ border: "none" }}
+                style={{ background: "#F6F7FA" }}
               >
                 <h3
                   className="text-[#11226A] mb-2"
@@ -210,21 +181,25 @@ export function ContactSection() {
                   >
                     Subject
                   </label>
-                  <select
-                    name="subject"
-                    value={form.subject}
-                    onChange={handleChange}
-                    required
-                    className="px-4 py-3 rounded-xl bg-white border border-[#E5E7EB] text-[#1B2E41] outline-none focus:border-[#0A3B95] transition-colors text-sm"
-                    style={{ fontFamily: "'Poppins', sans-serif" }}
-                  >
-                    <option value="">Select a topic…</option>
-                    <option value="access">Can't access my account</option>
-                    <option value="canva">Canva plugin help</option>
-                    <option value="website">Property website question</option>
-                    <option value="upgrade">Upgrade / pricing inquiry</option>
-                    <option value="other">Other</option>
-                  </select>
+                  <div className="relative">
+                    <select
+                      name="subject"
+                      value={form.subject}
+                      onChange={handleChange}
+                      required
+                      className="appearance-none w-full px-4 py-3 pr-10 rounded-xl bg-white border border-[#E5E7EB] text-[#1B2E41] outline-none focus:border-[#0A3B95] transition-colors text-sm"
+                      style={{ fontFamily: "'Poppins', sans-serif" }}
+                    >
+                      <option value="">Select a topic…</option>
+                      <option value="support-ticket">Support Ticket</option>
+                      <option value="access">Can't access my account</option>
+                      <option value="canva">Canva plugin help</option>
+                      <option value="website">Property website question</option>
+                      <option value="upgrade">Upgrade / pricing inquiry</option>
+                      <option value="other">Other</option>
+                    </select>
+                    <ChevronDown size={16} className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-[#6B7280]" />
+                  </div>
                 </div>
 
                 <div className="flex flex-col gap-1.5">
@@ -244,6 +219,40 @@ export function ContactSection() {
                     className="px-4 py-3 rounded-xl bg-white border border-[#E5E7EB] text-[#1B2E41] placeholder-[#9CA3AF] outline-none focus:border-[#0A3B95] transition-colors text-sm resize-none"
                     style={{ fontFamily: "'Poppins', sans-serif" }}
                   />
+                </div>
+
+                <div
+                  className="flex items-center justify-between gap-4 p-3 rounded-sm bg-white border border-[#d3d3d3]"
+                  style={{ width: "304px", maxWidth: "100%" }}
+                >
+                  <div className="flex items-center gap-3">
+                    <input
+                      type="checkbox"
+                      id="recaptcha-placeholder"
+                      className="w-6 h-6 rounded-sm accent-[#0A3B95] cursor-pointer"
+                      style={{ border: "2px solid #c1c1c1" }}
+                    />
+                    <label
+                      htmlFor="recaptcha-placeholder"
+                      className="text-[#1B2E41] text-sm select-none cursor-pointer"
+                      style={{ fontFamily: "Roboto, 'Poppins', sans-serif" }}
+                    >
+                      I'm not a robot
+                    </label>
+                  </div>
+                  <div className="flex flex-col items-center gap-0.5 shrink-0">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <rect width="32" height="32" rx="4" fill="#4285F4" />
+                      <path d="M16 8L22 12V20L16 24L10 20V12L16 8Z" stroke="white" strokeWidth="1.5" fill="none" />
+                      <circle cx="16" cy="16" r="2.5" fill="white" />
+                    </svg>
+                    <span className="text-[10px] text-[#9CA3AF]" style={{ fontFamily: "Roboto, 'Poppins', sans-serif" }}>reCAPTCHA</span>
+                    <span className="text-[9px] text-[#9CA3AF] flex gap-1" style={{ fontFamily: "Roboto, 'Poppins', sans-serif" }}>
+                      <a href="#" className="hover:underline">Privacy</a>
+                      <span>-</span>
+                      <a href="#" className="hover:underline">Terms</a>
+                    </span>
+                  </div>
                 </div>
 
                 <motion.button
