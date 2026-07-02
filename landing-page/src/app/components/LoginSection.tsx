@@ -22,16 +22,25 @@ export function LoginSection() {
   const blob2Y = useTransform(scrollYProgress, [0, 1], ["20%", "-20%"]);
   const blob2Scale = useTransform(scrollYProgress, [0, 1], [1, 1.2]);
 
+  // Text parallax: content drifts up as you scroll up through the section,
+  // mirroring the hero's scroll-linked text movement.
+  const textY = useTransform(scrollYProgress, [0, 0.5, 1], ["48px", "0px", "-48px"]);
+
   return (
     <section id="login" ref={sectionRef} className="min-h-screen flex items-center relative overflow-hidden">
-      {/* Background */}
+      {/* Background — scroll-linked drift/zoom plus a slow, continuous gradient
+          shift so the colors stay alive even while the section sits still,
+          matching the hero's ambient background motion. */}
       <motion.div
         className="absolute -inset-y-24 inset-x-0"
         style={{
           y: bgY,
           scale: bgScale,
-          background: "linear-gradient(135deg, #09172D 0%, #1B2166 50%, #79309E 100%)",
+          backgroundImage: "linear-gradient(135deg, #09172D 0%, #1B2166 50%, #79309E 100%)",
+          backgroundSize: "200% 200%",
         }}
+        animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
+        transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
       />
       {/* Decorative blobs — drift + zoom at their own rates for depth */}
       <motion.div
@@ -48,6 +57,7 @@ export function LoginSection() {
       </motion.div>
 
       <div className="relative z-10 max-w-4xl w-full mx-auto px-6 text-center">
+        <motion.div style={{ y: textY }}>
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 30 }}
@@ -65,8 +75,8 @@ export function LoginSection() {
             style={{
               fontFamily: "'Poppins', sans-serif",
               fontWeight: 700,
-              fontSize: "clamp(1.75rem, 4vw, 2.75rem)",
-              lineHeight: 1.2,
+              fontSize: "clamp(2.4rem, 4.5vw, 3.75rem)",
+              lineHeight: 1.15,
             }}
           >
             Ready to access{" "}
@@ -126,6 +136,7 @@ export function LoginSection() {
               and we'll get you set up right away.
             </p>
           </div>
+        </motion.div>
         </motion.div>
       </div>
     </section>

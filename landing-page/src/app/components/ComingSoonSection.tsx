@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "motion/react";
 import { Star, Network, BookOpen } from "lucide-react";
 import imgPortfolios from "../../assets/coming-soon/portfolios.png";
@@ -11,6 +11,7 @@ const upcoming = [
     img: imgPortfolios,
     icon: BookOpen,
     title: "Portfolios",
+    badge: "Portfolio Site",
     description: "Showcase your full listing portfolio in one beautifully branded, shareable page.",
     gradient: "linear-gradient(135deg, #008AD0, #0A3B95)",
     delay: 0.1,
@@ -20,6 +21,7 @@ const upcoming = [
     img: imgSpotlights,
     icon: Star,
     title: "Spotlights",
+    badge: "Spotlight Site",
     description: "Highlight featured listings and agents with dynamic spotlight pages that drive engagement.",
     gradient: "linear-gradient(135deg, #B14DFF, #79309E)",
     delay: 0.2,
@@ -29,6 +31,7 @@ const upcoming = [
     img: imgNetwork,
     icon: Network,
     title: "Network",
+    badge: "Network",
     description: "Connect with other HGAR agents, share referrals, and grow your professional network inside REConnect.",
     gradient: "linear-gradient(135deg, #10E0F9, #0A3B95)",
     delay: 0.3,
@@ -38,6 +41,22 @@ const upcoming = [
 export function ComingSoonSection() {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
+
+  // Hover-to-flip only works with a real mouse. On touch devices (mobile,
+  // tablet) there's no hover state to leave, so cards get stuck flipped —
+  // flip those on tap/click instead.
+  const [canHover, setCanHover] = useState(true);
+  useEffect(() => {
+    const mq = window.matchMedia("(hover: hover) and (pointer: fine)");
+    const update = () => setCanHover(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+
+  const [flipped, setFlipped] = useState<Record<string, boolean>>({});
+  const toggleFlip = (key: string) =>
+    setFlipped((prev) => ({ ...prev, [key]: !prev[key] }));
 
   return (
     <section id="coming-soon" className="min-h-screen flex items-center py-24 relative overflow-hidden">
@@ -117,12 +136,30 @@ export function ComingSoonSection() {
               initial={{ opacity: 0, y: 25 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: item.delay }}
-              className="group relative h-[300px] cursor-default"
+              className={`group relative h-[300px] ${canHover ? "cursor-default" : "cursor-pointer"}`}
               style={{ perspective: "1200px" }}
+              onClick={canHover ? undefined : () => toggleFlip(item.key)}
+              role={canHover ? undefined : "button"}
+              tabIndex={canHover ? undefined : 0}
+              onKeyDown={
+                canHover
+                  ? undefined
+                  : (e) => {
+                      if (e.key === "Enter" || e.key === " ") {
+                        e.preventDefault();
+                        toggleFlip(item.key);
+                      }
+                    }
+              }
             >
               <div
-                className="relative w-full h-full transition-transform duration-700 group-hover:[transform:rotateY(180deg)]"
-                style={{ transformStyle: "preserve-3d" }}
+                className={`relative w-full h-full transition-transform duration-700 ${
+                  canHover ? "group-hover:[transform:rotateY(180deg)]" : ""
+                }`}
+                style={{
+                  transformStyle: "preserve-3d",
+                  transform: !canHover && flipped[item.key] ? "rotateY(180deg)" : undefined,
+                }}
               >
                 {/* Front — image preview */}
                 <div
@@ -144,7 +181,7 @@ export function ComingSoonSection() {
                       className="absolute top-3 right-3 text-xs px-3 py-1 rounded-full border border-white/15 text-white/70 backdrop-blur-sm"
                       style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 500, background: "rgba(9,23,45,0.5)" }}
                     >
-                      Coming Soon
+                      {item.badge}
                     </span>
                   </div>
                 </div>
