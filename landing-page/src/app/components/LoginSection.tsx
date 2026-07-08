@@ -128,10 +128,10 @@ export function LoginSection() {
               <strong className="text-white/90">Can't access your account?</strong>{" "}
               Contact us at{" "}
               <a
-                href="mailto:support@reconnect.app"
+                href="mailto:hgar@neutrinoinc.com"
                 className="text-[#10E0F9] hover:underline"
               >
-                support@reconnect.app
+                hgar@neutrinoinc.com
               </a>{" "}
               and we'll get you set up right away.
             </p>

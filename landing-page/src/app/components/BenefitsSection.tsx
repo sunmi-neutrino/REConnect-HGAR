@@ -1,43 +1,44 @@
 import { useRef } from "react";
 import { motion, useInView } from "motion/react";
-import { Database, FileText, MousePointer, Globe, ChevronDown } from "lucide-react";
+import { Globe, ChevronDown } from "lucide-react";
+import canvaIconBadge from "../../assets/canva/canva-icon-badge.svg";
+
+const canvaPoints = [
+  {
+    title: "MLS Listing Data",
+    description: "Live photos, property details, and agent info pulled directly from the MLS in real time.",
+  },
+  {
+    title: "Drag & Drop in Canva",
+    description: "Place any listing data field or photo exactly where you want on any Canva design.",
+  },
+  {
+    title: "Built-in Canva Templates",
+    description: "Free canva templates included, plus the ability to add your brokerage's own templates right in the app.",
+  },
+];
 
 const benefits = [
   {
-    icon: Database,
-    gradient: "linear-gradient(180deg, #008AD0 0%, #0A3B95 100%)",
-    title: "MLS Listing Data",
-    description: "Live photos, property details, and agent info pulled directly from the MLS in real time.",
+    key: "canva",
+    kind: "canva" as const,
+    title: "REConnect Canva Plugin",
     delay: 0.1,
     href: "#canva",
   },
   {
-    icon: MousePointer,
-    gradient: "linear-gradient(180deg, #10E0F9 0%, #0A3B95 100%)",
-    title: "Drag & Drop in Canva",
-    description: "Place any listing data field or photo exactly where you want on any Canva design.",
-    delay: 0.2,
-    href: "#canva",
-  },
-  {
-    icon: FileText,
-    gradient: "linear-gradient(180deg, #B14DFF 0%, #79309E 100%)",
-    title: "Built-in Canva Templates",
-    description: "Free canva templates included, plus the ability to add your brokerage's own templates right in the app.",
-    delay: 0.3,
-    href: "#canva",
-  },
-  {
+    key: "listing-website",
+    kind: "simple" as const,
     icon: Globe,
     gradient: "linear-gradient(180deg, #EE6D68 0%, #B14DFF 100%)",
     title: "A Single Listing Website & Digital Marketing Package",
     description: "Every member gets one free Single Listing Website and digital marketing package for their most expensive active listing at launch. One click activation for all your listings.",
-    delay: 0.4,
+    delay: 0.2,
     href: "#property-websites",
   },
 ];
 
-function BenefitCard({ benefit, index }: { benefit: typeof benefits[0]; index: number }) {
+function BenefitCard({ benefit }: { benefit: typeof benefits[0] }) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
 
@@ -48,7 +49,7 @@ function BenefitCard({ benefit, index }: { benefit: typeof benefits[0]; index: n
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.5, delay: benefit.delay }}
       whileHover={{ y: -6, scale: 1.02 }}
-      className="group relative rounded-2xl p-6 sm:p-9 flex flex-col sm:flex-row items-center sm:items-center text-center sm:text-left gap-6 cursor-default w-full max-w-[680px] mx-auto"
+      className="group relative rounded-2xl p-6 sm:p-9 flex flex-col items-center sm:items-start text-center sm:text-left gap-6 cursor-default w-full max-w-[680px] mx-auto"
       style={{
         background: "#F6F7FA",
         border: "1px solid #E5E7EB",
@@ -63,35 +64,72 @@ function BenefitCard({ benefit, index }: { benefit: typeof benefits[0]; index: n
         (e.currentTarget as HTMLDivElement).style.borderColor = "#E5E7EB";
       }}
     >
-      {/* Icon badge */}
-      <div
-        className="flex items-center justify-center w-14 h-14 rounded-full shrink-0"
-        style={{ background: benefit.gradient }}
-      >
-        <benefit.icon size={22} color="white" />
-      </div>
-      <div className="flex-1 flex flex-col items-center sm:items-start gap-2">
+      {/* Header: icon + title */}
+      <div className="flex flex-col sm:flex-row items-center sm:items-center gap-6 w-full">
+        {benefit.kind === "canva" ? (
+          <img src={canvaIconBadge} alt="" className="w-14 h-14 rounded-full shrink-0" />
+        ) : (
+          <div
+            className="flex items-center justify-center w-14 h-14 rounded-full shrink-0"
+            style={{ background: benefit.gradient }}
+          >
+            <benefit.icon size={22} color="white" />
+          </div>
+        )}
         <h3
-          className="text-[#1B2E41]"
-          style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "1.125rem" }}
+          className="text-[#1B2E41] flex-1"
+          style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "1.5rem" }}
         >
           {benefit.title}
         </h3>
-        <p
-          className="text-[#6B7280] leading-relaxed"
-          style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 400, fontSize: "0.875rem", lineHeight: 1.55 }}
-        >
-          {benefit.description}
-        </p>
-        <a
-          href={benefit.href}
-          className="inline-flex items-center gap-1 mt-1 group/btn"
-          style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "0.875rem", color: "#0A3B95" }}
-        >
-          Learn More
-          <ChevronDown size={16} className="transition-transform group-hover/btn:translate-y-0.5" />
-        </a>
       </div>
+
+      {/* Body */}
+      {benefit.kind === "canva" ? (
+        <div className="flex flex-col items-center sm:items-start gap-5 w-full">
+          {canvaPoints.map((point) => (
+            <div key={point.title} className="flex flex-col items-center sm:items-start gap-1">
+              <h4
+                className="text-[#1B2E41]"
+                style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "1.125rem" }}
+              >
+                {point.title}
+              </h4>
+              <p
+                className="text-[#6B7280] leading-relaxed"
+                style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 400, fontSize: "0.875rem", lineHeight: 1.55 }}
+              >
+                {point.description}
+              </p>
+            </div>
+          ))}
+          <a
+            href={benefit.href}
+            className="inline-flex items-center gap-1 mt-1 group/btn"
+            style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "0.875rem", color: "#0A3B95" }}
+          >
+            Learn More
+            <ChevronDown size={16} className="transition-transform group-hover/btn:translate-y-0.5" />
+          </a>
+        </div>
+      ) : (
+        <div className="flex flex-col items-center sm:items-start gap-2 w-full">
+          <p
+            className="text-[#6B7280] leading-relaxed"
+            style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 400, fontSize: "0.875rem", lineHeight: 1.55 }}
+          >
+            {benefit.description}
+          </p>
+          <a
+            href={benefit.href}
+            className="inline-flex items-center gap-1 mt-1 group/btn"
+            style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "0.875rem", color: "#0A3B95" }}
+          >
+            Learn More
+            <ChevronDown size={16} className="transition-transform group-hover/btn:translate-y-0.5" />
+          </a>
+        </div>
+      )}
     </motion.div>
   );
 }
@@ -152,8 +190,8 @@ export function BenefitsSection() {
 
         {/* Benefits stack */}
         <div className="flex flex-col items-center gap-5">
-          {benefits.map((benefit, index) => (
-            <BenefitCard key={benefit.title} benefit={benefit} index={index} />
+          {benefits.map((benefit) => (
+            <BenefitCard key={benefit.key} benefit={benefit} />
           ))}
         </div>
       </div>

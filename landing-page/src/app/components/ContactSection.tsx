@@ -83,11 +83,11 @@ export function ContactSection() {
                     REConnect Support
                   </p>
                   <a
-                    href="mailto:support@reconnectapp.com"
+                    href="mailto:hgar@neutrinoinc.com"
                     className="text-[#0A3B95] hover:underline text-sm"
                     style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 400 }}
                   >
-                    support@reconnectapp.com
+                    hgar@neutrinoinc.com
                   </a>
                 </div>
               </div>

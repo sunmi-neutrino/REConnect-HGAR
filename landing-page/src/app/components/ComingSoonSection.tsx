@@ -10,8 +10,7 @@ const upcoming = [
     key: "portfolios",
     img: imgPortfolios,
     icon: BookOpen,
-    title: "Portfolios",
-    badge: "Portfolio Site",
+    title: "Agent Portfolio Site",
     description: "Showcase your full listing portfolio in one beautifully branded, shareable page.",
     gradient: "linear-gradient(135deg, #008AD0, #0A3B95)",
     delay: 0.1,
@@ -21,7 +20,6 @@ const upcoming = [
     img: imgSpotlights,
     icon: Star,
     title: "Spotlights",
-    badge: "Spotlight Site",
     description: "Highlight featured listings and agents with dynamic spotlight pages that drive engagement.",
     gradient: "linear-gradient(135deg, #B14DFF, #79309E)",
     delay: 0.2,
@@ -31,7 +29,6 @@ const upcoming = [
     img: imgNetwork,
     icon: Network,
     title: "Network",
-    badge: "Network",
     description: "Connect with other HGAR agents, share referrals, and grow your professional network inside REConnect.",
     gradient: "linear-gradient(135deg, #10E0F9, #0A3B95)",
     delay: 0.3,
@@ -136,82 +133,88 @@ export function ComingSoonSection() {
               initial={{ opacity: 0, y: 25 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: item.delay }}
-              className={`group relative h-[300px] ${canHover ? "cursor-default" : "cursor-pointer"}`}
-              style={{ perspective: "1200px" }}
-              onClick={canHover ? undefined : () => toggleFlip(item.key)}
-              role={canHover ? undefined : "button"}
-              tabIndex={canHover ? undefined : 0}
-              onKeyDown={
-                canHover
-                  ? undefined
-                  : (e) => {
-                      if (e.key === "Enter" || e.key === " ") {
-                        e.preventDefault();
-                        toggleFlip(item.key);
-                      }
-                    }
-              }
+              className="flex flex-col items-center gap-4"
             >
               <div
-                className={`relative w-full h-full transition-transform duration-700 ${
-                  canHover ? "group-hover:[transform:rotateY(180deg)]" : ""
-                }`}
-                style={{
-                  transformStyle: "preserve-3d",
-                  transform: !canHover && flipped[item.key] ? "rotateY(180deg)" : undefined,
-                }}
+                className={`group relative w-full h-[280px] ${canHover ? "cursor-default" : "cursor-pointer"}`}
+                style={{ perspective: "1200px" }}
+                onClick={canHover ? undefined : () => toggleFlip(item.key)}
+                role={canHover ? undefined : "button"}
+                tabIndex={canHover ? undefined : 0}
+                onKeyDown={
+                  canHover
+                    ? undefined
+                    : (e) => {
+                        if (e.key === "Enter" || e.key === " ") {
+                          e.preventDefault();
+                          toggleFlip(item.key);
+                        }
+                      }
+                }
               >
-                {/* Front — image preview */}
                 <div
-                  className="absolute inset-0 rounded-2xl p-4 overflow-hidden"
+                  className={`relative w-full h-full transition-transform duration-700 ${
+                    canHover ? "group-hover:[transform:rotateY(180deg)]" : ""
+                  }`}
                   style={{
-                    background: "rgba(255,255,255,0.05)",
-                    border: "1px solid rgba(255,255,255,0.1)",
-                    backdropFilter: "blur(10px)",
-                    backfaceVisibility: "hidden",
+                    transformStyle: "preserve-3d",
+                    transform: !canHover && flipped[item.key] ? "rotateY(180deg)" : undefined,
                   }}
                 >
-                  <div className="relative rounded-xl overflow-hidden h-full">
-                    <img
-                      src={item.img}
-                      alt={`${item.title} preview`}
-                      className="absolute inset-0 w-full h-full object-cover object-top"
-                    />
-                    <span
-                      className="absolute top-3 right-3 text-xs px-3 py-1 rounded-full border border-white/15 text-white/70 backdrop-blur-sm"
-                      style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 500, background: "rgba(9,23,45,0.5)" }}
-                    >
-                      {item.badge}
-                    </span>
+                  {/* Front — image preview */}
+                  <div
+                    className="absolute inset-0 rounded-2xl p-4 overflow-hidden"
+                    style={{
+                      background: "rgba(255,255,255,0.05)",
+                      border: "1px solid rgba(255,255,255,0.1)",
+                      backdropFilter: "blur(10px)",
+                      backfaceVisibility: "hidden",
+                    }}
+                  >
+                    <div className="relative rounded-xl overflow-hidden h-full">
+                      <img
+                        src={item.img}
+                        alt={`${item.title} preview`}
+                        className="absolute inset-0 w-full h-full object-cover object-top"
+                      />
+                    </div>
                   </div>
-                </div>
 
-                {/* Back — title + description */}
-                <div
-                  className="absolute inset-0 rounded-2xl p-6 flex flex-col gap-4 items-start justify-center"
-                  style={{
-                    background: item.gradient,
-                    backfaceVisibility: "hidden",
-                    transform: "rotateY(180deg)",
-                  }}
-                >
-                  <div className="flex items-center justify-center w-11 h-11 rounded-full bg-white/15">
-                    <item.icon size={20} color="white" />
+                  {/* Back — title + description */}
+                  <div
+                    className="absolute inset-0 rounded-2xl p-6 flex flex-col gap-4 items-start justify-center"
+                    style={{
+                      background: item.gradient,
+                      backfaceVisibility: "hidden",
+                      transform: "rotateY(180deg)",
+                    }}
+                  >
+                    <div className="flex items-center justify-center w-11 h-11 rounded-full bg-white/15">
+                      <item.icon size={20} color="white" />
+                    </div>
+                    <h3
+                      className="text-white"
+                      style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "1.1rem" }}
+                    >
+                      {item.title}
+                    </h3>
+                    <p
+                      className="text-white/85 leading-relaxed"
+                      style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 400, fontSize: "0.875rem", lineHeight: 1.6 }}
+                    >
+                      {item.description}
+                    </p>
                   </div>
-                  <h3
-                    className="text-white"
-                    style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "1.1rem" }}
-                  >
-                    {item.title}
-                  </h3>
-                  <p
-                    className="text-white/85 leading-relaxed"
-                    style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 400, fontSize: "0.875rem", lineHeight: 1.6 }}
-                  >
-                    {item.description}
-                  </p>
                 </div>
               </div>
+
+              {/* Title — below the card, centered */}
+              <h3
+                className="text-white text-center"
+                style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "1.1rem" }}
+              >
+                {item.title}
+              </h3>
             </motion.div>
           ))}
         </div>

@@ -1,4 +1,4 @@
-import hgarLogo from "../../assets/navbar/hgar-logo.svg";
+import hgarLogo from "../../assets/navbar/hgar-logo-gray.svg";
 import reconnectWordmark from "../../assets/navbar/reconnect-wordmark.svg";
 
 const footerLinks = [
