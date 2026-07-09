@@ -53,31 +53,6 @@ export function HeroSection() {
         <div className="absolute rounded-full blur-[120px] opacity-15" style={{ width: "500px", height: "500px", background: "radial-gradient(circle, #10E0F9 0%, transparent 70%)", bottom: "-60px", left: "-80px" }} />
         <div className="absolute rounded-full blur-[64px] opacity-20" style={{ width: "384px", height: "384px", background: "radial-gradient(circle, #D77FFF 0%, transparent 70%)", top: "200px", left: "96px" }} />
 
-        {/* Large concentric ring arcs — top-right corner */}
-        <svg className="absolute top-0 right-0 opacity-[0.07]" width="600" height="600" viewBox="0 0 600 600" fill="none">
-          <circle cx="600" cy="0" r="200" stroke="white" strokeWidth="1" />
-          <circle cx="600" cy="0" r="320" stroke="white" strokeWidth="0.75" />
-          <circle cx="600" cy="0" r="440" stroke="white" strokeWidth="0.5" />
-          <circle cx="600" cy="0" r="560" stroke="white" strokeWidth="0.4" />
-        </svg>
-
-        {/* Concentric rings — bottom-left corner */}
-        <svg className="absolute bottom-0 left-0 opacity-[0.06]" width="480" height="480" viewBox="0 0 480 480" fill="none">
-          <circle cx="0" cy="480" r="160" stroke="white" strokeWidth="1" />
-          <circle cx="0" cy="480" r="260" stroke="white" strokeWidth="0.75" />
-          <circle cx="0" cy="480" r="360" stroke="white" strokeWidth="0.5" />
-        </svg>
-
-        {/* Diagonal ruled lines — subtle grid texture */}
-        <svg className="absolute inset-0 w-full h-full opacity-[0.03]" preserveAspectRatio="xMidYMid slice">
-          <defs>
-            <pattern id="diag" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse" patternTransform="rotate(30)">
-              <line x1="0" y1="0" x2="0" y2="40" stroke="white" strokeWidth="0.5" />
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#diag)" />
-        </svg>
-
         {/* Scattered small dots */}
         <svg className="absolute inset-0 w-full h-full opacity-[0.08]" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice">
           {[
@@ -89,12 +64,6 @@ export function HeroSection() {
           ))}
         </svg>
 
-        {/* Single large cross-hair accent — center-right */}
-        <svg className="absolute opacity-[0.06]" style={{ top: "38%", right: "8%" }} width="60" height="60" viewBox="0 0 60 60" fill="none">
-          <line x1="30" y1="0" x2="30" y2="60" stroke="white" strokeWidth="0.75" />
-          <line x1="0" y1="30" x2="60" y2="30" stroke="white" strokeWidth="0.75" />
-          <circle cx="30" cy="30" r="12" stroke="white" strokeWidth="0.75" />
-        </svg>
       </div>
 
       {/* Hero content */}

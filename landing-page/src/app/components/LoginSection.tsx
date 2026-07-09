@@ -27,21 +27,24 @@ export function LoginSection() {
   const textY = useTransform(scrollYProgress, [0, 0.5, 1], ["48px", "0px", "-48px"]);
 
   return (
-    <section id="login" ref={sectionRef} className="min-h-screen flex items-center relative overflow-hidden">
-      {/* Background — scroll-linked drift/zoom plus a slow, continuous gradient
-          shift so the colors stay alive even while the section sits still,
-          matching the hero's ambient background motion. */}
-      <motion.div
-        className="absolute -inset-y-24 inset-x-0"
-        style={{
-          y: bgY,
-          scale: bgScale,
-          backgroundImage: "linear-gradient(135deg, #09172D 0%, #1B2166 50%, #79309E 100%)",
-          backgroundSize: "200% 200%",
-        }}
-        animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
-        transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
-      />
+    <section id="login" ref={sectionRef} className="flex items-center relative overflow-hidden" style={{ minHeight: "calc(100vh + 100px)", background: "#0B1F3A" }}>
+      {/* Background — scroll-linked drift/zoom wrapping the same crossfading
+          gradient layers used on the V2 hero, so the two sections share one
+          animated background identity. */}
+      <motion.div className="absolute -inset-y-24 inset-x-0" style={{ y: bgY, scale: bgScale }}>
+        <motion.div
+          className="absolute inset-0"
+          animate={{ opacity: [1, 0, 0, 1] }}
+          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", times: [0, 0.33, 0.66, 1] }}
+          style={{ background: "linear-gradient(160deg, #0B1F3A 0%, #1B2166 60%, #8D5D8E 100%)" }}
+        />
+        <motion.div
+          className="absolute inset-0"
+          animate={{ opacity: [0, 0, 1, 0] }}
+          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", times: [0, 0.33, 0.66, 1] }}
+          style={{ background: "linear-gradient(130deg, #8D5D8E 0%, #1B2166 50%, #0B1F3A 100%)" }}
+        />
+      </motion.div>
       {/* Decorative blobs — drift + zoom at their own rates for depth */}
       <motion.div
         style={{ y: blob1Y, scale: blob1Scale }}
