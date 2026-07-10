@@ -70,7 +70,9 @@ export function NavBar() {
           <div className="flex items-center gap-3">
             {!open && (
               <a
-                href="#login"
+                href="https://reconnect-base-redesign.vercel.app/auth-hgar-landing-login.html"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-white text-sm font-semibold transition-all hover:scale-105"
                 style={{
                   fontFamily: "'Poppins', sans-serif",
@@ -137,7 +139,9 @@ export function NavBar() {
                   className="pt-6 flex justify-center"
                 >
                   <a
-                    href="#login"
+                    href="https://reconnect-base-redesign.vercel.app/auth-hgar-landing-login.html"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     onClick={() => setOpen(false)}
                     className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full text-white font-semibold"
                     style={{

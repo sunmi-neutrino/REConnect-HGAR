@@ -103,7 +103,7 @@ export function LoginSection() {
           {/* CTA buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
             <motion.a
-              href="https://reconnect.app"
+              href="https://reconnect-base-redesign.vercel.app/auth-hgar-landing-login.html"
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.05 }}

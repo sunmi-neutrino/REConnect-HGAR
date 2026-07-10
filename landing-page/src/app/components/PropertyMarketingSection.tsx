@@ -139,7 +139,7 @@ export function PropertyMarketingSection() {
                 }}
               >
                 <span className="text-white text-[10px] sm:text-xs font-bold text-center leading-tight" style={{ fontFamily: "'Poppins', sans-serif" }}>
-                  ONE<br />CLICK
+                  TRY<br />NOW
                 </span>
               </motion.div>
             </div>
@@ -154,7 +154,9 @@ export function PropertyMarketingSection() {
           className="flex flex-col sm:flex-row gap-4 justify-center mt-6 sm:mt-24"
         >
           <motion.a
-            href="#login"
+            href="https://reconnect-base-redesign.vercel.app/auth-hgar-landing-login.html"
+            target="_blank"
+            rel="noopener noreferrer"
             whileHover={{ scale: 1.04 }}
             whileTap={{ scale: 0.98 }}
             className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-white font-semibold border border-transparent w-full sm:w-auto"
@@ -170,7 +172,9 @@ export function PropertyMarketingSection() {
             Activate Your Marketing Package
           </motion.a>
           <motion.a
-            href="#property-websites"
+            href="https://staging-pro.reconnectapp.com/amp-detail/demo"
+            target="_blank"
+            rel="noopener noreferrer"
             whileHover={{ scale: 1.04 }}
             whileTap={{ scale: 0.98 }}
             className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-white font-semibold border border-transparent w-full sm:w-auto"

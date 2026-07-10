@@ -127,7 +127,9 @@ export function HeroSection() {
             className="flex flex-col sm:flex-row gap-4 items-stretch sm:items-center justify-center lg:justify-start"
           >
             <a
-              href="#login"
+              href="https://reconnect-base-redesign.vercel.app/auth-hgar-landing-login.html"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-white font-semibold border border-transparent transition-all duration-300 hover:scale-105 hover:shadow-2xl w-full sm:w-auto"
               style={{
                 fontFamily: "'Poppins', sans-serif",

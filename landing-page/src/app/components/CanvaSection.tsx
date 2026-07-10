@@ -104,7 +104,7 @@ export function CanvaSection() {
             Get REConnect Canva App
           </motion.a>
           <motion.a
-            href="https://www.canva.com/apps/search?q=reconnect"
+            href="https://reconnect-base-redesign.vercel.app/auth-hgar-landing-login.html"
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ scale: 1.02 }}
